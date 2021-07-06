@@ -11,8 +11,17 @@ PROGRAM test_quadrature
 	
 	REAL :: a, b, accuracy_tolerance, value
 	REAL :: smallest_subdivision = 1.E-5
-	INTEGER :: error
+	INTEGER :: error, ios
+	CHARACTER ans
 	
+	!Open a file for results
+	OPEN(UNIT=2, FILE="Results.txt", STATUS='NEW', ACTION='WRITE', POSITION='APPEND', IOSTAT=ios)
+	IF (iso /= 0) THEN
+		PRINT*, "Error during opening of file"
+		PRINT*, "Enter '1' to continue or '2' to exit program"
+		READ*, ans
+		IF (ans == '2') STOP
+	END IF
 	! Calculate integral of f on [0.1, 1.0]
 	a = 1.0E-1
 	b = 1.0
@@ -47,12 +56,9 @@ PROGRAM test_quadrature
 	! Print result or error message, as appropriate
 	SELECT CASE (error)
 	CASE (0)
-		PRINT '(//1x, ''Value of integral cos(x) from '', F5.1 &
-		              '' to '', F10.6/                         &
-		          1x, '' with accuracy tolerance '', F14.6/    &
-		          1x, '' is '', F14.6/                         &
-		          1x, '' Correct answer is '', F14.6//)',      &
+		PRINT '(FMT=100)',      &
 		          a, b, accuracy_tolerance, value, 1.0
+		WRITE (UNIT=2, FMT=100)  a, b, accuracy_tolerance, value, 1.0
 	CASE (-2)
 		PRINT*, 'Failed to converge to a solution for first &
 		         &problem'
@@ -61,4 +67,10 @@ PROGRAM test_quadrature
 		PRINT *, "Epsilon was less than or equal to zero - should &
 		         & be impossible"
 	END SELECT
+100 FORMAT (//1x, ''Value of integral cos(x) from '', F5.1 &
+		              '' to '', F10.6/                         &
+		          1x, '' with accuracy tolerance '', F14.6/    &
+		          1x, '' is '', F14.6/                         &
+		          1x, '' Correct answer is '', F14.6//)
+STOP
 END PROGRAM test_quadrature 
