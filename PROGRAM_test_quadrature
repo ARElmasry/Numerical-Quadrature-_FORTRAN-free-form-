@@ -34,12 +34,9 @@ PROGRAM test_quadrature
 	! Print result or error message, as appropriate
 	SELECT CASE (error)
 	CASE (0)
-		PRINT '(//1X,''Value of integral of x**(-1) from '', E9.2, &
-		        '' to '', E9.1/ 1x, '' with accuracy tolerance '', &
-		        F14.6/, 1x, '' is '', F14.6/ 1x,                   &
-		        '' Correct answer is '', F14.6//)', a, b,          &
+		PRINT 100,  a, b,          &
 		        accuracy_tolerance, value, -log(a)
-		        
+		WRITE (UNIT=2, FMT=200)   a, b, accuracy_tolerance, value, -log(a)     
 	CASE (-2)
 		PRINT*, 'Failed to converge to a solution for first &
 		         &problem'
@@ -59,9 +56,9 @@ PROGRAM test_quadrature
 	! Print result or error message, as appropriate
 	SELECT CASE (error)
 	CASE (0)
-		PRINT 100      &
+		PRINT 200,      &
 		          a, b, accuracy_tolerance, value, 1.0
-		WRITE (UNIT=2, FMT=100)  a, b, accuracy_tolerance, value, 1.0
+		WRITE (UNIT=2, FMT=200)  a, b, accuracy_tolerance, value, 1.0
 	CASE (-2)
 		PRINT*, 'Failed to converge to a solution for first &
 		         &problem'
@@ -70,7 +67,11 @@ PROGRAM test_quadrature
 		PRINT *, "Epsilon was less than or equal to zero - should &
 		         & be impossible"
 	END SELECT
-100 FORMAT (//1x, 'Value of integral cos(x) from ', F5.1 &
+100 FORMAT (//1X,'Value of integral of x**(-1) from ', E9.2, &
+		        ' to ', E9.1/ 1x, ' with accuracy tolerance ', &
+		        F14.6/, 1x, ' is ', F14.6/ 1x,                   &
+		        ' Correct answer is ', F14.6//)
+200 FORMAT (//1x, 'Value of integral cos(x) from ', F5.1 &
 		              ' to ', F10.6/                         &
 		          1x, ' with accuracy tolerance ', F14.6/    &
 		          1x, ' is ', F14.6/                         &
