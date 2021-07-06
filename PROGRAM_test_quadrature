@@ -16,7 +16,7 @@ PROGRAM test_quadrature
 	
 	!Open a file for results
 	OPEN(UNIT=2, FILE="Results.txt", STATUS='NEW', ACTION='WRITE', POSITION='APPEND', IOSTAT=ios)
-	IF (iso /= 0) THEN
+	IF (ios /= 0) THEN
 		PRINT*, "Error during opening of file"
 		PRINT*, "Enter '1' to continue or '2' to exit program"
 		READ*, ans
@@ -67,10 +67,10 @@ PROGRAM test_quadrature
 		PRINT *, "Epsilon was less than or equal to zero - should &
 		         & be impossible"
 	END SELECT
-100 FORMAT (//1x, ''Value of integral cos(x) from '', F5.1 &
-		              '' to '', F10.6/                         &
-		          1x, '' with accuracy tolerance '', F14.6/    &
-		          1x, '' is '', F14.6/                         &
-		          1x, '' Correct answer is '', F14.6//)
+100 FORMAT (//1x, 'Value of integral cos(x) from ', F5.1 &
+		              ' to ', F10.6/                         &
+		          1x, ' with accuracy tolerance ', F14.6/    &
+		          1x, ' is ', F14.6/                         &
+		          1x, ' Correct answer is ', F14.6//)
 STOP
 END PROGRAM test_quadrature 
