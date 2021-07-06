@@ -1,6 +1,9 @@
 !This is an example test run program 
 !on how to use the Module numerical_quadrature and Functions
-		                                      
+
+INCLUDE "MODULE_numerical_quadrature.f90"
+INCLUDE "Example_functions.f90"		
+
 PROGRAM test_quadrature
 	USE numerical_quadrature    
 	IMPLICIT NONE
