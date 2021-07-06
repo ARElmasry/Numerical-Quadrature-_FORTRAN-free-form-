@@ -56,7 +56,7 @@ PROGRAM test_quadrature
 	! Print result or error message, as appropriate
 	SELECT CASE (error)
 	CASE (0)
-		PRINT '(FMT=100)',      &
+		PRINT 100      &
 		          a, b, accuracy_tolerance, value, 1.0
 		WRITE (UNIT=2, FMT=100)  a, b, accuracy_tolerance, value, 1.0
 	CASE (-2)
