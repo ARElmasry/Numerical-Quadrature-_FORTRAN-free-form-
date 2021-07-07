@@ -18,7 +18,7 @@ PROGRAM test_quadrature
 	CHARACTER ans
 	
 	!Open a file for results
-	OPEN(UNIT=2, FILE="Results.txt", STATUS='NEW', ACTION='WRITE', POSITION='APPEND', IOSTAT=ios)
+	OPEN(UNIT=2, FILE="Results.txt", STATUS='UNKNOWN', ACTION='WRITE', POSITION='APPEND', IOSTAT=ios)
 	IF (ios /= 0) THEN
 		PRINT*, "Error during opening of file"
 		PRINT*, "Enter '1' to continue or '2' to exit program"
